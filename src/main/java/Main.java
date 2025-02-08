@@ -10,8 +10,8 @@ public class Main {
         if(input.isEmpty()){
             continue;
         }
-        else if(input.equals("exit")){
-            System.out.println(input+"0");
+        else if(input.equals("exit 0")){
+            System.exit(0);
         }
         else{
 
