@@ -10,7 +10,14 @@ public class Main {
         if(input.isEmpty()){
             continue;
         }
+        else if(input.equals("exit")){
+            System.out.println(input+"0");
+        }
+        else{
+
         System.out.println(input +": command not found");
+        }
+
 
     }
 }
