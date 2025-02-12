@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -34,6 +35,23 @@ public class Main {
                         System.out.println(cmdToCheck + " is a shell builtin");
                         found = true;
                         break;
+                    }
+                }
+                if(!found){
+                    String pathenv=System.getenv("PATH");
+                    if(pathenv != null && !pathenv.isEmpty()){
+                        String paths[]=pathenv.split(":");
+                        for(String path:paths){
+                            File file=new File(path,cmdToCheck);
+                            if(file.exists() && file.canExecute()){
+                                System.out.println(cmdToCheck + "is" +file.getAbsolutePath());
+                                found=true;
+                                break;
+                            }
+                        }
+                    }
+                    if(!found){
+                        System.out.println(cmdToCheck+": not found");
                     }
                 }
 
