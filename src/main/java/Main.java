@@ -44,7 +44,7 @@ public class Main {
                         for(String path:paths){
                             File file=new File(path,cmdToCheck);
                             if(file.exists() && file.canExecute()){
-                                System.out.println(cmdToCheck + "is" +file.getAbsolutePath());
+                                System.out.println(cmdToCheck + " is " +file.getAbsolutePath());
                                 found=true;
                                 break;
                             }
