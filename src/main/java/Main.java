@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -55,10 +56,47 @@ public class Main {
                     }
                 }
             }
-            // If no valid command is found
             else {
-                System.out.println(input + ": command not found");
-            }
+                String[] inputParts = input.split(" ");
+                String command = inputParts[0];  // Command is the first word
+                String[] arguments = new String[inputParts.length - 1]; // Remaining are arguments
+                System.arraycopy(inputParts, 1, arguments, 0, arguments.length);
+
+                String pathEnv = System.getenv("PATH");
+                File executable = null;
+
+                if (pathEnv != null && !pathEnv.isEmpty()) {
+                    String[] paths = pathEnv.split(":");
+                    for (String path : paths) {
+                        File file = new File(path, command);
+                        if (file.exists() && file.canExecute()) {
+                            executable = file;
+                            break;
+                        }
+                    }
+                }
+
+                if (executable == null) {
+                    System.out.println(command + ": command not found");
+                } else {
+                    // Build the command with arguments
+                    String[] cmdWithArgs = new String[arguments.length + 1];
+                    cmdWithArgs[0] = executable.getAbsolutePath();
+                    System.arraycopy(arguments, 0, cmdWithArgs, 1, arguments.length);
+
+                    // Execute the command
+                    ProcessBuilder processBuilder = new ProcessBuilder(cmdWithArgs);
+                    processBuilder.inheritIO();  // Direct output to the current terminal
+
+                    try {
+                        Process process = processBuilder.start();
+                        process.waitFor(); // Wait for the process to complete
+                    } catch (IOException | InterruptedException e) {
+                        System.out.println("Error executing command: " + e.getMessage());
+                         }
+        
         }
     }
 }
+        }
+    }
