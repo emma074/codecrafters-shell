@@ -57,7 +57,7 @@ public class Main {
                     }
                 }
             }
-             else {
+            else {
                 try {
                     // Split input into command and arguments
                     String[] inputParts = input.split(" ");
@@ -81,7 +81,9 @@ public class Main {
                     }
 
                 } catch (Exception e) {
-                    System.out.println("Failed to execute command: " + e.getMessage());
+                    // Output for invalid commands
+                    String[] inputParts = input.split(" ");
+                    System.out.println(inputParts[0] + ": command not found");
                 }
             }
         }
