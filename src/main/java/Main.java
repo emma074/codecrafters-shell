@@ -34,7 +34,7 @@ public class Main {
                 }
 
                 if (!found) {
-                    System.out.println(cmdToCheck + ": command not found");
+                    System.out.println(cmdToCheck + ":not found");
                 }
             } else {
                 System.out.println(input + ": command not found");
