@@ -95,7 +95,8 @@ public class Main {
                         System.out.println("Error executing command: " + e.getMessage());
                          }
                          System.out.println("Program was passed " + cmdWithArgs.length +"args (including program name).");
-                         System.out.println("Arg #0 (program name): " +command);
+                         String basename = new File(cmdWithArgs[0]).getName();
+                    System.out.println("Arg #0 (program name): " + basename);
                          for(int i=1;i<cmdWithArgs.length;i++){
                             System.out.println("Args  #" + i + ":" + cmdWithArgs[i]);
                          }
