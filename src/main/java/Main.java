@@ -94,6 +94,11 @@ public class Main {
                     } catch (IOException | InterruptedException e) {
                         System.out.println("Error executing command: " + e.getMessage());
                          }
+                         System.out.println("Program was passed " + cmdWithArgs.length +"args (including program name).");
+                         System.out.println("Arg #0 (program name): " +command);
+                         for(int i=1;i<cmdWithArgs.length;i++){
+                            System.out.println("Args  #" + i + ":" + cmdWithArgs[i]);
+                         }
         
         }
     }
