@@ -51,12 +51,8 @@ public class Main {
                         }
                     }
                     if(!found){
-                        System.out.println(cmdToCheck+": not found");
+                        System.out.println("$");
                     }
-                }
-
-                if (!found) {
-                    System.out.println(cmdToCheck + ": not found");
                 }
             }
             // If no valid command is found
