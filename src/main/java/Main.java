@@ -18,6 +18,9 @@ public class Main {
             if (input.equals("exit")) {
                 System.exit(0); // Exit the shell
             }
+            if(input.startsWith("echo")){
+                System.out.println(input.substring(5));
+            }
 
             // Check if the input starts with "type"
             if (input.startsWith("type ")) {
