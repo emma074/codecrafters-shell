@@ -51,7 +51,7 @@ public class Main {
                         }
                     }
                     if(!found){
-                        System.out.println("$");
+                        System.out.println(cmdToCheck + ": not found");
                     }
                 }
             }
