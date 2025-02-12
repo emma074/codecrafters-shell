@@ -16,7 +16,7 @@ public class Main {
             }
 
             // Exit the shell if the user enters "exit"
-            if (input.equals("exit")) {
+            if (input.equals("exit")|| input.equals("exit 0")) {
                 System.exit(0);
             }
             // Handle echo command
