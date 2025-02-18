@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Array of built-in commands
-        String[] cmd = {"echo", "exit", "type"};
+        String[] cmd = {"echo", "exit", "type",};
 
         while (true) {
             System.out.print("$ ");
@@ -26,6 +26,11 @@ public class Main {
             else if (input.startsWith("echo ")) {
                 System.out.println(input.substring(5));
             }
+            else if(input.equals("pwd")){
+                String currdir=System.getProperty("user.dir");
+                System.out.println(currdir);
+            }
+
             // Handle type command
             else if (input.startsWith("type ")) {
                 String cmdToCheck = input.substring(5).trim();
