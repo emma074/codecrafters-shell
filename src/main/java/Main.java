@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        String currdir=System.getProperty("user.dir");
 
         // Array of built-in commands
         String[] cmd = {"echo", "exit", "type","pwd"};
@@ -27,8 +28,22 @@ public class Main {
                 System.out.println(input.substring(5));
             }
             else if(input.equals("pwd")){
-                String currdir=System.getProperty("user.dir");
                 System.out.println(currdir);
+            }
+            else if (input.startsWith("cd ")) {
+                String path = input.substring(3).trim(); // Extract the path
+                File targetDir = new File(path);
+
+                // Check if the provided path is valid and is a directory
+                if (targetDir.isAbsolute() && targetDir.exists() && targetDir.isDirectory()) {
+                    // Change current directory to the new path
+                    currdir = targetDir.getAbsolutePath();
+                    System.setProperty("user.dir", currdir); // Update Java's working directory
+
+                } else if (!targetDir.exists()) {
+                    // Directory does not exist
+                    System.out.println("cd: " + path + ": No such file or directory");
+                }
             }
 
             // Handle type command
