@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Array of built-in commands
-        String[] cmd = {"echo", "exit", "type",};
+        String[] cmd = {"echo", "exit", "type","pwd"};
 
         while (true) {
             System.out.print("$ ");
