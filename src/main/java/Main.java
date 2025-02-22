@@ -33,14 +33,17 @@ public class Main {
             else if (input.startsWith("cd ")) {
                 String path = input.substring(3).trim(); // Extract the path
                 File targetDir;
-                if(path.equals("~")){
-                    String homedir=System.getenv("HOME");
-                    targetDir=new File(homedir);
-                }
-                else{
-                    System.out.println("cd: ~: HOME not set");
-                    continue;
-                }
+            
+                if (path.equals("~")) {
+                    // Handle cd ~ to go to home directory
+                    String homeDir = System.getenv("HOME");
+                    if (homeDir != null) {
+                        targetDir = new File(homeDir);
+                    } else {
+                        System.out.println("cd: ~: HOME not set");
+                        continue; // Skip further processing
+                    }
+                } 
             
             
                 // Handle relative paths like ./ and ../
