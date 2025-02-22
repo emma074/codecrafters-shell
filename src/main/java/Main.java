@@ -37,6 +37,11 @@ public class Main {
                     String homedir=System.getenv("HOME");
                     targetDir=new File(homedir);
                 }
+                else{
+                    System.out.println("cd: ~: HOME not set");
+                    continue;
+                }
+            
             
                 // Handle relative paths like ./ and ../
                 if (path.startsWith("./") || path.startsWith("../") || !path.startsWith("/")) {
