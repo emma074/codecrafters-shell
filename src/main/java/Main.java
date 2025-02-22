@@ -32,25 +32,33 @@ public class Main {
             }
             else if (input.startsWith("cd ")) {
                 String path = input.substring(3).trim(); // Extract the path
-                File targetDir =null;
+                File targetDir = null;
             
                 if (path.equals("~")) {
                     // Handle cd ~ to go to home directory
                     String homeDir = System.getenv("HOME");
+                    if (homeDir == null) {
+                        // Fallback to system property if HOME environment variable is not set
+                        homeDir = System.getProperty("user.home");
+                    }
+            
+                    // Debugging: Print the home directory to check the value
+                    System.out.println("Home Directory: " + homeDir);
+            
                     if (homeDir != null) {
                         targetDir = new File(homeDir);
                     } else {
-                        System.out.println("cd: ~: HOME not set");
+                        System.out.println("cd: ~: No such file or directory");
                         continue; // Skip further processing
                     }
                 } 
-            
-            
-                // Handle relative paths like ./ and ../
-                if (path.startsWith("./") || path.startsWith("../") || !path.startsWith("/")) {
+                else if (path.startsWith("./") || path.startsWith("../") || !path.startsWith("/")) {
+                    // Handle relative paths like ./ and ../
                     targetDir = new File(currdir, path); // Resolve relative path against current directory
-                } else {
-                    targetDir = new File(path); // Absolute path
+                } 
+                else {
+                    // Handle absolute paths
+                    targetDir = new File(path);
                 }
             
                 // Check if the provided path is valid and is a directory
