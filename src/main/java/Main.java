@@ -32,7 +32,7 @@ public class Main {
             }
             else if (input.startsWith("cd ")) {
                 String path = input.substring(3).trim(); // Extract the path
-                File targetDir;
+                File targetDir =null;
             
                 if (path.equals("~")) {
                     // Handle cd ~ to go to home directory
