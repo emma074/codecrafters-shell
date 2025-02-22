@@ -33,6 +33,10 @@ public class Main {
             else if (input.startsWith("cd ")) {
                 String path = input.substring(3).trim(); // Extract the path
                 File targetDir;
+                if(path.equals("~")){
+                    String homedir=System.getenv("HOME");
+                    targetDir=new File(homedir);
+                }
             
                 // Handle relative paths like ./ and ../
                 if (path.startsWith("./") || path.startsWith("../") || !path.startsWith("/")) {
