@@ -41,10 +41,6 @@ public class Main {
                         // Fallback to system property if HOME environment variable is not set
                         homeDir = System.getProperty("user.home");
                     }
-            
-                    // Debugging: Print the home directory to check the value
-                    System.out.println("Home Directory: " + homeDir);
-            
                     if (homeDir != null) {
                         targetDir = new File(homeDir);
                     } else {
