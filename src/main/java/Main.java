@@ -32,19 +32,24 @@ public class Main {
             }
             else if (input.startsWith("cd ")) {
                 String path = input.substring(3).trim(); // Extract the path
-                File targetDir = new File(path);
-
+                File targetDir;
+            
+                // Handle relative paths like ./ and ../
+                if (path.startsWith("./") || path.startsWith("../") || !path.startsWith("/")) {
+                    targetDir = new File(currdir, path); // Resolve relative path against current directory
+                } else {
+                    targetDir = new File(path); // Absolute path
+                }
+            
                 // Check if the provided path is valid and is a directory
-                if (targetDir.isAbsolute() && targetDir.exists() && targetDir.isDirectory()) {
-                    // Change current directory to the new path
-                    currdir = targetDir.getAbsolutePath();
+                if (targetDir.exists() && targetDir.isDirectory()) {
+                    currdir = targetDir.getCanonicalPath(); // Change to canonical path (resolves any symbolic links)
                     System.setProperty("user.dir", currdir); // Update Java's working directory
-
-                } else if (!targetDir.exists()) {
-                    // Directory does not exist
+                } else {
                     System.out.println("cd: " + path + ": No such file or directory");
                 }
             }
+            
 
             // Handle type command
             else if (input.startsWith("type ")) {
